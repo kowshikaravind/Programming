@@ -1,44 +1,24 @@
-#include<stdio.h>
-#include <stdlib.h>
-
-int main()
-{
-    char a[100];
-    fgets(a,100,stdin);
-    int b=strlen(a);
-    int c=0;
-    for(int i=b-1; i>=0; i--)
-    {
-        for(int j=i-1; j>=0; j--)
-        {
-            if(a[i]==a[j] && c==0)
-            {
-                printf("%c",a[i]);
-                c=1;
-            }
-        }
-    }
+#include <stdio.h>
+#include <string.h>
+void repeating(char *s){
+	char a[100];
+	int count[256]={0};
+	int flag=0;
+	for(int i=0;i<strlen(s);i++){
+		count[s[i]]++;
+		if(count[s[i]]==2){
+			printf("%c",s[i]);
+			flag=1;
+			return;
+		}
+	}
+	if(flag==0){
+		printf("No repeating character");
+	}
 }
-
-
-Question:
-
-A string S is passed as the input. S has at least one repeating character. The program must print the first repeating
-character C from the last.
-
-Input Format:
-The first line contains S.
-
-Output Format:
-The first line contains C.
-
-Boundary Conditions:
-Length of S will be from 3 to 100.
-
-Example Input/Output 1:
-
-Input:
-abcdexyzbwqpooplj
-
-Output:
-p
+int main(){
+	char s[100];
+	scanf("%[^\n]",s);
+	repeating(s);
+	
+}
